@@ -133,7 +133,7 @@ class _FormsPageState extends State<FormsPage> {
                             Personagens(
                               name: nameController.text,
                               image: imageController.text,
-                              nivel: int.parse(nivelController.text), key: null,
+                              nivel: int.parse(nivelController.text),
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(

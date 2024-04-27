@@ -11,10 +11,10 @@ class Personagens extends StatefulWidget {
   int level = 0;
 
   Personagens(
-      {super.key,
+      {super.key, 
       required this.name,
       required this.image,
-      required this.nivel});
+      required this.nivel}); 
 
   @override
   State<Personagens> createState() => _PersonagensState();
@@ -86,7 +86,6 @@ class _PersonagensState extends State<Personagens> {
                           ElevatedButton(
                             onLongPress: () {
                               PersonagemProvider().delete(widget.name);
-                              setState(() {});
                             },
                             onPressed: () {
                               setState(() {
