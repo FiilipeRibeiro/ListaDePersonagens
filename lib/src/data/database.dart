@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 Future<Database> getDatabase() async {
-  String path = join(await getDatabasesPath(), 'personagens.db');
+  String path = join(await getDatabasesPath(), 'personagemTable.db');
   return openDatabase(
     path,
     onCreate: (db, version) {

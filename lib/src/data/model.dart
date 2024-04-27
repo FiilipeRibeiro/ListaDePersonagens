@@ -1,13 +1,11 @@
 class PersonagemDao {
-  static String tablename = '_personagemTable';
-  static String name = '_name';
-  static String nivel = 'nivel';
-  static String image = 'image';
+  static const String tableSql = 'CREATE TABLE $tablename('
+      '$name TEXT, '
+      '$nivel INTEGER, '
+      '$image TEXT)';
 
-  static String tableSql = '''
-  CREATE TABLE $tablename ( 
-    $name TEXT, 
-    $nivel INTEGER,
-    $image TEXT)
-  ''';
+  static const String tablename = 'personagemTable';
+  static const String name = 'name';
+  static const String nivel = 'nivel';
+  static const String image = 'image';
 }

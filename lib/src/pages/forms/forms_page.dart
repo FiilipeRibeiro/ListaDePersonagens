@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_personagens/src/data/dao.dart';
+
+import 'package:lista_de_personagens/src/widgets/personagens.dart';
 
 class FormsPage extends StatefulWidget {
   const FormsPage({super.key});
@@ -11,6 +14,22 @@ class _FormsPageState extends State<FormsPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController nivelController = TextEditingController();
   TextEditingController imageController = TextEditingController();
+
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  bool difficultyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      if (value.isEmpty || int.parse(value) > 5 || int.parse(value) < 1) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -43,7 +62,7 @@ class _FormsPageState extends State<FormsPage> {
                   children: [
                     TextFormField(
                       validator: (value) {
-                        if (value != null && value.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira o nome do Personagem';
                         }
                         return null;
@@ -58,9 +77,7 @@ class _FormsPageState extends State<FormsPage> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty ||
-                            int.parse(value) > 5 ||
-                            int.parse(value) < 1) {
+                        if (difficultyValidator(value)) {
                           return 'Insira um nivel entre 1 e 5';
                         }
                         return null;
@@ -77,7 +94,7 @@ class _FormsPageState extends State<FormsPage> {
                     TextFormField(
                       onChanged: (text) => setState(() {}),
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira uma URL de imagem';
                         }
                         return null;
@@ -111,12 +128,22 @@ class _FormsPageState extends State<FormsPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Personagem adicionado com sucesso'),
-                          ),
-                        );
+                        if (_formKey.currentState!.validate()) {
+                          PersonagemProvider().save(
+                            Personagens(
+                              name: nameController.text,
+                              image: imageController.text,
+                              nivel: int.parse(nivelController.text), key: null,
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Personagem adicionado com sucesso'),
+                            ),
+                          );
+                          Navigator.pop(context);
+                        }
                       },
                       child: const Text('Adicionar!'),
                     )

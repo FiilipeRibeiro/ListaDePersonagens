@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_personagens/src/data/dao.dart';
 import 'package:lista_de_personagens/src/widgets/difficulty.dart';
 
 // ignore: must_be_immutable
@@ -83,6 +84,10 @@ class _PersonagensState extends State<Personagens> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ElevatedButton(
+                            onLongPress: () {
+                              PersonagemProvider().delete(widget.name);
+                              setState(() {});
+                            },
                             onPressed: () {
                               setState(() {
                                 widget.level++;
@@ -96,8 +101,7 @@ class _PersonagensState extends State<Personagens> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
-                              backgroundColor:
-                                  cor,
+                              backgroundColor: cor,
                             ),
                             child: const Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

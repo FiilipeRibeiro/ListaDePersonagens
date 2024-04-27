@@ -25,40 +25,81 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed("/forms");
+                Navigator.of(context)
+                    .pushNamed("/forms")
+                    .then((value) => setState(() {}));
               },
               child: const Text('New'),
             ),
           )
         ],
       ),
-      body: Column(
-        children: [
-          Personagens(
-            name: 'Rengoku',
-            image:
-                'https://i.pinimg.com/564x/e1/16/00/e11600ae8a6bce7dc143c3fab74d7723.jpg',
-            nivel: 4,
-          ),
-          Personagens(
-            name: 'Rengoku',
-            image:
-                'https://i.pinimg.com/564x/e1/16/00/e11600ae8a6bce7dc143c3fab74d7723.jpg',
-            nivel: 4,
-          ),
-          Personagens(
-            name: 'Rengoku',
-            image:
-                'https://i.pinimg.com/564x/e1/16/00/e11600ae8a6bce7dc143c3fab74d7723.jpg',
-            nivel: 4,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              PersonagemProvider().findAll();
-            },
-            child: Text('testando banco de dados'),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8, bottom: 70),
+        child: FutureBuilder<List<Personagens>>(
+          future: PersonagemProvider().findAll(),
+          builder: (context, snapshot) {
+            List<Personagens>? items = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando'),
+                    ],
+                  ),
+                );
+              case ConnectionState.waiting:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando'),
+                    ],
+                  ),
+                );
+              case ConnectionState.active:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando'),
+                    ],
+                  ),
+                );
+              case ConnectionState.done:
+                if (snapshot.hasData && items != null) {
+                  if (items.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Personagens personagens = items[index];
+                        return personagens;
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          size: 128,
+                        ),
+                        Text(
+                          'Não há nenhuma Tarefa',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                return const Text('Erro ao carregar tarefas');
+            }
+          },
+        ),
       ),
     );
   }

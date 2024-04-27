@@ -10,6 +10,7 @@ class PersonagemProvider {
     final Database db = await getDatabase();
     var itemExists = await find(personagem.name);
     Map<String, dynamic> personagemMap = PersonagemConvert.toMap(personagem);
+
     if (itemExists.isEmpty) {
       return await db.insert(
         PersonagemDao.tablename,
@@ -29,23 +30,23 @@ class PersonagemProvider {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result =
         await db.query(PersonagemDao.tablename);
-    print('FindAll: $result');
     return PersonagemConvert.toList(result);
   }
 
   Future<List<Personagens>> find(String nomeDoPersonagem) async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result = await db.query(
-      PersonagemDao.name,
+      PersonagemDao.tablename,
       where: '${PersonagemDao.name} = ?',
       whereArgs: [nomeDoPersonagem],
     );
-    print('Find: $result');
+
     return PersonagemConvert.toList(result);
   }
 
   delete(String nomeDoPersonagem) async {
     final Database db = await getDatabase();
-    return db.delete(PersonagemDao.tablename, where: '${PersonagemDao.name} = ?', whereArgs: [nomeDoPersonagem]);
+    return db.delete(PersonagemDao.tablename,
+        where: '${PersonagemDao.name} = ?', whereArgs: [nomeDoPersonagem]);
   }
 }
