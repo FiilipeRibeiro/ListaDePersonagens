@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_personagens/src/widgets/difficulty.dart';
 
+// ignore: must_be_immutable
 class Personagens extends StatefulWidget {
   final String name;
   final String image;

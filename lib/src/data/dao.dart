@@ -12,7 +12,11 @@ const String tableSql = '''
 
 class PersonagemProvider {
   save() async {}
-  findAll() async {}
+  
+  findAll() async {
+    print('Abrindo findAll');
+  }
+
   find() async {}
   delete() async {}
 }
