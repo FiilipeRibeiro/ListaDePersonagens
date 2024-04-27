@@ -1,16 +1,44 @@
-# lista_de_personagens
+# Lista de Personagens Flutter
 
-A new Flutter project.
+🚀 Este é um aplicativo Flutter desenvolvido em parceria com a Alura para gerenciar uma lista de personagens!
 
-## Getting Started
+ℹ️ O aplicativo permite adicionar, visualizar e listar personagens.
 
-This project is a starting point for a Flutter application.
+## Principais Recursos
 
-A few resources to get you started if this is your first Flutter project:
+- **Navegação entre Telas:** Utilize a navegação entre telas para adicionar novos personagens e visualizar detalhes.
+- **Persistência de Dados:** Os personagens são armazenados localmente utilizando o SQFLite para persistência de dados.
+- **Operações CRUD:** Implementação das operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciar a lista de personagens no banco de dados.
+- **Interface de Usuário Intuitiva:** A interface de usuário é responsiva e oferece feedback visual durante o carregamento dos dados.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tecnologias Utilizadas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter e Dart para o desenvolvimento multiplataforma.
+
+## Demonstração
+
+![Demo]()
+
+## Como Executar o Projeto
+
+1. **Clone o Repositório:** Clone este repositório em sua máquina local usando o seguinte comando:
+``` git clone https://github.com/FiilipeRibeiro/ListaDePersonagens.git ```
+
+2. **Instale as Dependências:** Execute o comando ```flutter pub get``` no diretório do projeto para instalar todas as dependências necessárias do projeto.
+
+3. **Execute o Aplicativo:** Execute o aplicativo em seu emulador ou dispositivo usando o comando ```flutter run```.
+
+4. **Explore e Desfrute:** Explore todas as funcionalidades do aplicativo e desfrute de gerenciar sua lista de personagens favoritos!
+
+
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um Pull Request para propor melhorias ou correções.
+
+## Autor
+
+Desenvolvido por [Filipe Ribeiro](https://github.com/FiilipeRibeiro).
+
+## Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).

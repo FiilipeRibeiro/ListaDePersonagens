@@ -25,9 +25,12 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("/forms")
-                    .then((value) => setState(() {}));
+                Navigator.of(context).pushNamed("/forms").then((value) {
+                  Future.delayed(const Duration(milliseconds: 10), () {
+                    setState(() {
+                    });
+                  });
+                });
               },
               child: const Text('New'),
             ),
