@@ -4,6 +4,12 @@
 
 ℹ️ O aplicativo permite adicionar, visualizar e listar personagens.
 
+
+
+https://github.com/FiilipeRibeiro/ListaDePersonagens/assets/96142984/ba9aa76e-6b9f-4bf5-a869-ef3b0cdc0159
+
+
+
 ## Principais Recursos
 
 - **Navegação entre Telas:** Utilize a navegação entre telas para adicionar novos personagens e visualizar detalhes.
@@ -14,10 +20,6 @@
 ## Tecnologias Utilizadas
 
 - Flutter e Dart para o desenvolvimento multiplataforma.
-
-## Demonstração
-
-![Demo]()
 
 ## Como Executar o Projeto
 
