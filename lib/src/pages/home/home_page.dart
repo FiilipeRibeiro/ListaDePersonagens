@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/dao.dart';
 import '../../widgets/personagens.dart';
 
 class HomePage extends StatefulWidget {
@@ -51,6 +52,12 @@ class _HomePageState extends State<HomePage> {
                 'https://i.pinimg.com/564x/e1/16/00/e11600ae8a6bce7dc143c3fab74d7723.jpg',
             nivel: 4,
           ),
+          ElevatedButton(
+            onPressed: () {
+              PersonagemProvider().findAll();
+            },
+            child: Text('testando banco de dados'),
+          )
         ],
       ),
     );

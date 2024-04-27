@@ -21,7 +21,7 @@ class Personagens extends StatefulWidget {
 
 class _PersonagensState extends State<Personagens> {
   bool assertOrNetwork() => widget.image.contains('https');
-  Color cor = Color.fromARGB(255, 218, 152, 12);
+  Color cor = const Color.fromARGB(255, 218, 152, 12);
 
   @override
   Widget build(BuildContext context) {
