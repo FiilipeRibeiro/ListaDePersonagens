@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_personagens/src/models/sqflite_model.dart';
 
-import '../../data/dao.dart';
-import '../../widgets/personagens.dart';
+import 'widgets/personagens.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,8 +27,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).pushNamed("/forms").then((value) {
                   Future.delayed(const Duration(milliseconds: 10), () {
-                    setState(() {
-                    });
+                    setState(() {});
                   });
                 });
               },
@@ -40,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 70),
         child: FutureBuilder<List<Personagens>>(
-          future: PersonagemProvider().findAll(),
+          future: PersonagemDao().findAll(),
           builder: (context, snapshot) {
             List<Personagens>? items = snapshot.data;
             switch (snapshot.connectionState) {

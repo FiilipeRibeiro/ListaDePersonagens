@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lista_de_personagens/src/data/dao.dart';
-import 'package:lista_de_personagens/src/widgets/difficulty.dart';
+import 'package:lista_de_personagens/src/models/sqflite_model.dart';
+import 'package:lista_de_personagens/src/pages/home/widgets/difficulty.dart';
 
 // ignore: must_be_immutable
 class Personagens extends StatefulWidget {
@@ -85,7 +85,7 @@ class _PersonagensState extends State<Personagens> {
                         children: [
                           ElevatedButton(
                             onLongPress: () {
-                              PersonagemProvider().delete(widget.name);
+                              PersonagemDao().delete(widget.name);
                             },
                             onPressed: () {
                               setState(() {

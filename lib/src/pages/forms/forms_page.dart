@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lista_de_personagens/src/data/dao.dart';
+import 'package:lista_de_personagens/src/models/sqflite_model.dart';
+import '../../view-model/forms/forms_page_model.dart';
 
-import 'package:lista_de_personagens/src/widgets/personagens.dart';
+import 'package:lista_de_personagens/src/pages/home/widgets/personagens.dart';
 
 class FormsPage extends StatefulWidget {
   const FormsPage({super.key});
@@ -14,23 +15,7 @@ class _FormsPageState extends State<FormsPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController nivelController = TextEditingController();
   TextEditingController imageController = TextEditingController();
-
-  bool valueValidator(String? value) {
-    if (value != null && value.isEmpty) {
-      return true;
-    }
-    return false;
-  }
-
-  bool difficultyValidator(String? value) {
-    if (value != null && value.isEmpty) {
-      if (value.isEmpty || int.parse(value) > 5 || int.parse(value) < 1) {
-        return true;
-      }
-    }
-    return false;
-  }
-
+  final FormsPageModel _pageModel = FormsPageModel();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -62,7 +47,7 @@ class _FormsPageState extends State<FormsPage> {
                   children: [
                     TextFormField(
                       validator: (value) {
-                        if (valueValidator(value)) {
+                        if (_pageModel.valueValidator(value)) {
                           return 'Insira o nome do Personagem';
                         }
                         return null;
@@ -77,7 +62,7 @@ class _FormsPageState extends State<FormsPage> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (difficultyValidator(value)) {
+                        if (_pageModel.difficultyValidator(value)) {
                           return 'Insira um nivel entre 1 e 5';
                         }
                         return null;
@@ -94,7 +79,7 @@ class _FormsPageState extends State<FormsPage> {
                     TextFormField(
                       onChanged: (text) => setState(() {}),
                       validator: (value) {
-                        if (valueValidator(value)) {
+                        if (_pageModel.valueValidator(value)) {
                           return 'Insira uma URL de imagem';
                         }
                         return null;
@@ -129,7 +114,7 @@ class _FormsPageState extends State<FormsPage> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          PersonagemProvider().save(
+                          PersonagemDao().save(
                             Personagens(
                               name: nameController.text,
                               image: imageController.text,
